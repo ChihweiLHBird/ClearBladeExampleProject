@@ -1,0 +1,2 @@
+psutil>=5.8.0
+clearblade>=2.4.0
