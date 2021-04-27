@@ -15,7 +15,6 @@
 
 
 function storing_messages(req, resp) {
-    //ClearBlade.init({request:req});
     var callback = function (err, data) {
         if (err) {
             resp.error("creation error : " + JSON.stringify(data));
@@ -23,7 +22,6 @@ function storing_messages(req, resp) {
             resp.success(data);
         }
     };
-    // These are parameters passed into the code service
     var msg_body = req.params.body;
     msg_body = JSON.parse(msg_body);
 

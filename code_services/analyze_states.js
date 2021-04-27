@@ -20,6 +20,13 @@ function analyze_states(req, resp) {
     // These are parameters passed into the code service
     var params = req.params;
 
+    const get_avg_cpu_usage = function (data) {
+        result = 0;
+        data.forEach(function (item) { result += item.cpu_usage });
+        result /= data.length;
+        return result
+    }
+
     const callback = function (err, data) {
         if (err) {
             resp.error("fetch error : " + JSON.stringify(data));
@@ -28,9 +35,7 @@ function analyze_states(req, resp) {
             if (results.length > 0) {
                 analysis_report = {}
                 results = results.sort(sort_by_datetime);
-                analysis_report.avg_cpu_usage = 0;
-                results.forEach(function (item) { analysis_report.avg_cpu_usage += item.cpu_usage });
-                analysis_report.avg_cpu_usage /= results.length;
+                analysis_report.avg_cpu_usage = get_avg_cpu_usage(results);
                 analysis_report.min_cpu_usage = results[0].cpu_usage;
                 analysis_report.max_cpu_usage = results[results.length - 1].cpu_usage;
                 analysis_report.data_points_count = results.length;
