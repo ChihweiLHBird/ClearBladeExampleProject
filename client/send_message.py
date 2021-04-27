@@ -1,4 +1,4 @@
-import psutil, clearblade, json, time
+import psutil, json, time
 from datetime import datetime
 from clearblade.ClearBladeCore import System
 
@@ -8,11 +8,9 @@ def get_pc_state():
     results["cpu_usage"] = psutil.cpu_percent(10)
     return json.dumps(results)
 
-import random
-
 # System credentials
 SYSTEM_KEY = "<your_system_key>"
-SYSTEM_SECRET = "your_system_secrete"
+SYSTEM_SECRET = "<your_system_secrete>"
 
 
 
